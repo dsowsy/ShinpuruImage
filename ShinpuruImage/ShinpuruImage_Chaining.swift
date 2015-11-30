@@ -219,8 +219,9 @@ extension ShinpuruCoreImageHelper
         let inputImage = KeyValuePair(key: kCIInputImageKey, value: image)
         ciFilter!.setValue(inputImage.value, forKey: inputImage.key)
         
-        keyValuePairs.map({ ciFilter!.setValue($0.value, forKey: $0.key) })
-        
+        keyValuePairs.forEach { (k,v) in
+            ciFilter!.setValue(v, forKey:k)
+        }
         return ciFilter!.valueForKey(kCIOutputImageKey) as! CIImage
     }
 }
