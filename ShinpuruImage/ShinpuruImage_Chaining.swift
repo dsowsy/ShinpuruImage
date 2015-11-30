@@ -222,6 +222,9 @@ extension ShinpuruCoreImageHelper
         keyValuePairs.forEach { (k,v) in
             ciFilter!.setValue(v, forKey:k)
         }
+        
+        // keyValuePairs.map({ ciFilter!.setValue($0.value, forKey: $0.key) })
+        
         return ciFilter!.valueForKey(kCIOutputImageKey) as! CIImage
     }
 }
