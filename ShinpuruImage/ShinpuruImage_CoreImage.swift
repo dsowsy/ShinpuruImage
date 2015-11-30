@@ -214,7 +214,9 @@ class ShinpuruCoreImageHelper
         let inputImage = KeyValuePair(key: kCIInputImageKey, value: CIImage(image: image)!)
         ciFilter!.setValue(inputImage.value, forKey: inputImage.key)
         
-        keyValuePairs.map({ ciFilter!.setValue($0.value, forKey: $0.key) })
+        keyValuePairs.forEach { (k,v) in
+            ciFilter!.setValue(v, forKey:k)
+        }
         
         let filteredImageData = ciFilter!.valueForKey(kCIOutputImageKey) as! CIImage!
         let filteredImageRef = ShinpuruCoreImageHelper.ciContext.createCGImage(filteredImageData, fromRect: filteredImageData.extent)
